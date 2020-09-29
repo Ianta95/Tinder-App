@@ -42,7 +42,7 @@ class CardView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        configureGestureRecognizers()
         backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -70,5 +70,67 @@ class CardView: UIView {
         gradientLayer.locations = [0.5, 1.1]
         layer.addSublayer(gradientLayer)
     }
+    
+}
+
+extension CardView {
+    
+    private func configureGestureRecognizers(){
+        print("Inicia configure Gesture Recognizers")
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
+        addGestureRecognizer(pan)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
+        addGestureRecognizer(tap)
+    }
+    
+    @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            superview?.subviews.forEach({ $0.layer.removeAllAnimations() })
+            break
+        case .changed:
+            swipeCard(sender: sender)
+            break
+        case .ended:
+            resetCardPosition(sender: sender)
+        default:
+            break
+        }
+    }
+    
+    @objc func handleChangePhoto(sender: UIPanGestureRecognizer) {
+        
+    }
+    
+    func swipeCard(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: nil)
+        let degrees: CGFloat = translation.x / 20
+        let angle = degrees * .pi / 180
+        let rotationTransform = CGAffineTransform(rotationAngle: angle)
+        self.transform = rotationTransform.translatedBy(x: translation.x, y: translation.y)
+    }
+    
+    func resetCardPosition(sender: UIPanGestureRecognizer){
+        let direction: SwipeDirection = sender.translation(in: nil).x > 100 ? .right : .left
+        let shouldDismissCard = abs(sender.translation(in: nil).x) > 100
+        UIView.animate(withDuration: 0.80, delay: 0,usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut) {
+            if shouldDismissCard {
+                let xTranslation = CGFloat(direction.rawValue) * 1000
+                let offScreenTransform = self.transform.translatedBy(x: xTranslation, y: 0)
+                self.transform = offScreenTransform
+                self.alpha = 0.3
+            } else {
+                self.transform = .identity
+            }
+        } completion: { complete in
+            if shouldDismissCard {
+                self.removeFromSuperview()
+            }
+        }
+
+    }
+    
+
     
 }

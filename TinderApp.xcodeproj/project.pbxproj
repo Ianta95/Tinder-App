@@ -20,6 +20,7 @@
 		B9F6AD0E25225E4E001EA75C /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD0D25225E4E001EA75C /* HomeNavigationStackView.swift */; };
 		B9F6AD132522770A001EA75C /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD122522770A001EA75C /* BottomControlsStackView.swift */; };
 		B9F6AD18252281CF001EA75C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD17252281CF001EA75C /* CardView.swift */; };
+		B9F6AD202522FEE8001EA75C /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD1F2522FEE8001EA75C /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		B9F6AD0D25225E4E001EA75C /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		B9F6AD122522770A001EA75C /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		B9F6AD17252281CF001EA75C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B9F6AD1F2522FEE8001EA75C /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				B9F6AD0825225C3B001EA75C /* Extensions.swift */,
+				B9F6AD1F2522FEE8001EA75C /* Enums.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				B9F6AD0E25225E4E001EA75C /* HomeNavigationStackView.swift in Sources */,
 				B9F6ACC72522552E001EA75C /* SceneDelegate.swift in Sources */,
 				B9F6AD18252281CF001EA75C /* CardView.swift in Sources */,
+				B9F6AD202522FEE8001EA75C /* Enums.swift in Sources */,
 				B9F6AD132522770A001EA75C /* BottomControlsStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
