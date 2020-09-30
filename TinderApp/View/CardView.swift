@@ -8,6 +8,8 @@
 import UIKit
 
 class CardView: UIView {
+    // View Model
+    private let viewModel: CardViewModel
     // Photo image
     private let imageView: UIImageView = {
         let img = UIImageView()
@@ -18,17 +20,10 @@ class CardView: UIView {
     // Gradient background
     private let gradientLayer = CAGradientLayer()
     // Info text
-    private let infoLabel: UILabel = {
+    private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        let attributedText = NSMutableAttributedString(string: "Pepe Sola",
-                                                       attributes: [.font: UIFont.systemFont(ofSize: 32,
-                                                                                             weight: .heavy),
-                                                                    .foregroundColor: UIColor.white])
-        attributedText.append(NSAttributedString(string: "\t20",
-                                                 attributes: [.font: UIFont.systemFont(ofSize: 24),
-                                                              .foregroundColor: UIColor.white]))
-        label.attributedText = attributedText
+        label.attributedText = viewModel.userInfoText
         return label
     }()
     // Info button
@@ -40,9 +35,12 @@ class CardView: UIView {
     
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: CardViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         configureGestureRecognizers()
+        imageView.image = viewModel.user.images.first
+        
         backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -100,7 +98,14 @@ extension CardView {
     }
     
     @objc func handleChangePhoto(sender: UIPanGestureRecognizer) {
-        
+        let location = sender.location(in: nil).x
+        let shouldShowNextPhoto = location > self.frame.width / 2
+        if shouldShowNextPhoto {
+            viewModel.showNextPhoto()
+        } else {
+            viewModel.showPreviousPhoto()
+        }
+        imageView.image = viewModel.imageToShow
     }
     
     func swipeCard(sender: UIPanGestureRecognizer) {
