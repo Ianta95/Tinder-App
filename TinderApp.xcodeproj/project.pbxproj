@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
+		B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */; };
 		B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC42522552E001EA75C /* AppDelegate.swift */; };
 		B9F6ACC72522552E001EA75C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC62522552E001EA75C /* SceneDelegate.swift */; };
 		B9F6ACCC2522552E001EA75C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F6ACCA2522552E001EA75C /* Main.storyboard */; };
@@ -20,6 +22,7 @@
 		B9F6AD0E25225E4E001EA75C /* HomeNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD0D25225E4E001EA75C /* HomeNavigationStackView.swift */; };
 		B9F6AD132522770A001EA75C /* BottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD122522770A001EA75C /* BottomControlsStackView.swift */; };
 		B9F6AD18252281CF001EA75C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD17252281CF001EA75C /* CardView.swift */; };
+		B9F6AD202522FEE8001EA75C /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6AD1F2522FEE8001EA75C /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B9F6ACC12522552E001EA75C /* TinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F6ACC42522552E001EA75C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9F6ACC62522552E001EA75C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +64,7 @@
 		B9F6AD0D25225E4E001EA75C /* HomeNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationStackView.swift; sourceTree = "<group>"; };
 		B9F6AD122522770A001EA75C /* BottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlsStackView.swift; sourceTree = "<group>"; };
 		B9F6AD17252281CF001EA75C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B9F6AD1F2522FEE8001EA75C /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,7 @@
 		B9F6ACFA252255D8001EA75C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B9DE14D92524EC85001AD8D9 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 		B9F6ACFC252255E6001EA75C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -187,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				B9F6AD0825225C3B001EA75C /* Extensions.swift */,
+				B9F6AD1F2522FEE8001EA75C /* Enums.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -321,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */,
 				B9F6AD0925225C3B001EA75C /* Extensions.swift in Sources */,
 				B9F6AD04252256BF001EA75C /* HomeController.swift in Sources */,
 				B9F6ACCF2522552E001EA75C /* TinderApp.xcdatamodeld in Sources */,
@@ -328,6 +338,8 @@
 				B9F6AD0E25225E4E001EA75C /* HomeNavigationStackView.swift in Sources */,
 				B9F6ACC72522552E001EA75C /* SceneDelegate.swift in Sources */,
 				B9F6AD18252281CF001EA75C /* CardView.swift in Sources */,
+				B9F6AD202522FEE8001EA75C /* Enums.swift in Sources */,
+				B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */,
 				B9F6AD132522770A001EA75C /* BottomControlsStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
