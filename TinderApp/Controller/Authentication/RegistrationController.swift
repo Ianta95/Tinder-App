@@ -10,11 +10,13 @@ import UIKit
 class RegistrationController: UIViewController {
     
     /*------> Propiedades <------*/
+    // Components
     private let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        button.clipsToBounds = true
         return button
     }()
     private let fullNameTextField = CustomAuthTextField(placeholder: "Nombre Completo")
@@ -30,10 +32,13 @@ class RegistrationController: UIViewController {
         button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
         return button
     }()
+    // Variables
+    private var viewModel = RegistrationViewModel()
     
     /*------> Overrides <------*/
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTextObservers()
         configureUI()
     }
     
@@ -49,8 +54,26 @@ class RegistrationController: UIViewController {
     @objc func handleShowLogin(){
         navigationController?.popViewController(animated: true)
     }
+    // Cambio de texto
+    @objc func textDidChange(sender: UITextField){
+        switch sender {
+        case fullNameTextField:
+            viewModel.name = sender.text
+            break
+        case emailTextField:
+            viewModel.email = sender.text
+            break
+        case passwordTextField:
+            viewModel.password = sender.text
+            break
+        default:
+            break
+        }
+        checkFormStatus()
+    }
     
     /*------> Configuracion App <------*/
+    // Configura UI
     func configureUI(){
         configureGradientLayer()
         // Add photo button
@@ -69,6 +92,22 @@ class RegistrationController: UIViewController {
         goToLoginButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 32, paddingBottom: 10, paddingRight: 32)
         
     }
+    // Configura observers
+    func configureTextObservers() {
+        fullNameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    // Checa si es valido
+    func checkFormStatus(){
+        if viewModel.formIsValid {
+            authButton.isEnabled = true
+            authButton.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        } else {
+            authButton.isEnabled = false
+            authButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        }
+    }
     
 }
 
@@ -81,9 +120,16 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
         selectPhotoButton.layer.borderWidth = 3
         selectPhotoButton.layer.cornerRadius = 10
-        selectPhotoButton.imageView?.layer.cornerRadius = 10
         selectPhotoButton.imageView?.contentMode = .scaleAspectFill
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension RegistrationController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        fullNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
 }

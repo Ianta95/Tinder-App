@@ -12,6 +12,7 @@
 		B9172A2A2527A7CE0037966E /* CustomAuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A292527A7CE0037966E /* CustomAuthTextField.swift */; };
 		B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A2E2527AAD30037966E /* CustomAuthButton.swift */; };
 		B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A392527B8380037966E /* CustomAuthTextButton.swift */; };
+		B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */; };
 		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
 		B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */; };
 		B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC42522552E001EA75C /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		B9172A292527A7CE0037966E /* CustomAuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextField.swift; sourceTree = "<group>"; };
 		B9172A2E2527AAD30037966E /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		B9172A392527B8380037966E /* CustomAuthTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextButton.swift; sourceTree = "<group>"; };
+		B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B9F6ACC12522552E001EA75C /* TinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */,
+				B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 			files = (
 				B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */,
 				B9172A1C252798990037966E /* LoginController.swift in Sources */,
+				B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */,
 				B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */,
 				B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */,
 				B9F6AD0925225C3B001EA75C /* Extensions.swift in Sources */,

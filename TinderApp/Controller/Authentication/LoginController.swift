@@ -9,6 +9,7 @@ import UIKit
 
 class LoginController: UIViewController {
     /*------> Propiedades <------*/
+    // Components
     private let iconImageView: UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "app_icon").withRenderingMode(.alwaysTemplate)
@@ -27,10 +28,13 @@ class LoginController: UIViewController {
         button.addTarget(self, action: #selector(handleShowRegistration), for: .touchUpInside)
         return button
     }()
+    // Variables
+    private var viewModel = LoginViewModel()
     /*------> Overrides <------*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTextObservers()
         configureUI()
     }
     
@@ -43,7 +47,17 @@ class LoginController: UIViewController {
         navigationController?.pushViewController(RegistrationController(), animated: true)
     }
     
+    @objc func textDidChange(sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else {
+            viewModel.password = sender.text
+        }
+        checkFormStatus()
+    }
+    
     /*------> Configuracion App <------*/
+    // Configura UI
     func configureUI(){
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
@@ -64,5 +78,26 @@ class LoginController: UIViewController {
         goToRegistrationButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 32, paddingBottom: 10, paddingRight: 32)
         
     }
-    
+    // Configure observers
+    func configureTextObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+    // Checa si es valido
+    func checkFormStatus(){
+        if viewModel.formIsValid {
+            authButton.isEnabled = true
+            authButton.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        } else {
+            authButton.isEnabled = false
+            authButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        }
+    }
+}
+
+extension LoginController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
 }
