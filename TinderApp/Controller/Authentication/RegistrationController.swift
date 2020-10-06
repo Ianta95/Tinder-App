@@ -39,7 +39,9 @@ class RegistrationController: UIViewController {
     
     /*------> Acciones <------*/
     @objc func handleSelectPhoto(){
-        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
     }
     @objc func handleRegister(){
         
@@ -68,5 +70,20 @@ class RegistrationController: UIViewController {
         
     }
     
+}
+
+/*------> Delegates <------*/
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
+        selectPhotoButton.layer.borderWidth = 3
+        selectPhotoButton.layer.cornerRadius = 10
+        selectPhotoButton.imageView?.layer.cornerRadius = 10
+        selectPhotoButton.imageView?.contentMode = .scaleAspectFill
+        dismiss(animated: true, completion: nil)
+    }
     
 }
