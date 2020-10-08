@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CardView: UIView {
     // View Model
@@ -39,8 +40,7 @@ class CardView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         configureGestureRecognizers()
-        imageView.image = viewModel.user.images.first
-        
+        imageView.sd_setImage(with: viewModel.imageUrl)
         backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -105,7 +105,7 @@ extension CardView {
         } else {
             viewModel.showPreviousPhoto()
         }
-        imageView.image = viewModel.imageToShow
+        //imageView.image = viewModel.imageToShow
     }
     
     func swipeCard(sender: UIPanGestureRecognizer) {

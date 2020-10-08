@@ -12,6 +12,11 @@ class HomeController: UIViewController {
 
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
+    
+    private var viewModels = [CardViewModel]() {
+        didSet { configureCards() }
+    }
+    
     private let deckView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
@@ -20,11 +25,29 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkIfUserLoggedIn()
         configureUI()
-        configureCards()
+        fetchUsers()
     }
     
     /*------> API <------*/
+    // Fetch data
+    func fetchUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Service.fetchUser(withUid: uid) { user in
+            print("DEBUG: se ejecuto el completion")
+        }
+    }
+    
+    // Fetch all users
+    func fetchUsers() {
+        Service.fetchUsers { users in
+            print("DEBUG: Usuarios son \(users)")
+            self.viewModels = users.map({ CardViewModel(user: $0) })
+            
+        }
+    }
+    
     // Checa status usuario
     func checkIfUserLoggedIn(){
         if Auth.auth().currentUser == nil {
@@ -33,7 +56,7 @@ class HomeController: UIViewController {
             
         }
     }
-    
+    // Cierra sesión
     func logout() {
         do {
             try Auth.auth().signOut()
@@ -46,18 +69,13 @@ class HomeController: UIViewController {
     /*------> Preparativos App <------*/
     // Configura Tarjetas
     func configureCards(){
-        let user1 = User(name: "Jane Doe", age: 23, images: [#imageLiteral(resourceName: "jane1"), #imageLiteral(resourceName: "jane2")])
-        let user2 = User(name: "Meghan", age: 26, images: [#imageLiteral(resourceName: "lady5c"), #imageLiteral(resourceName: "kelly1")])
+        viewModels.forEach { (viewModel) in
+            let cardView = CardView(viewModel: viewModel)
+            deckView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
+        print("DEBUG: Configura las tarjetas")
         
-        let cardView1 = CardView(viewModel: CardViewModel(user: user1))
-        let cardView2 = CardView(viewModel: CardViewModel(user: user2))
-        
-        
-        
-        deckView.addSubview(cardView1)
-        deckView.addSubview(cardView2)
-        cardView1.fillSuperview()
-        cardView2.fillSuperview()
     }
     
     // Configura Interfaz
