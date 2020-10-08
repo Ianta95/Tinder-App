@@ -96,7 +96,7 @@ class RegistrationController: UIViewController {
         stackTextFields.axis = .vertical
         stackTextFields.spacing = 16
         view.addSubview(stackTextFields)
-        stackTextFields.anchor(top:selectPhotoButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 30, paddingRight: 30)
+        stackTextFields.anchor(top:selectPhotoButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 30, paddingRight: 30)
         // Bottom button
         view.addSubview(goToLoginButton)
         goToLoginButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 32, paddingBottom: 10, paddingRight: 32)
