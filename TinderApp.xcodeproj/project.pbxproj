@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		B9172A2A2527A7CE0037966E /* CustomAuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A292527A7CE0037966E /* CustomAuthTextField.swift */; };
 		B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A2E2527AAD30037966E /* CustomAuthButton.swift */; };
 		B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A392527B8380037966E /* CustomAuthTextButton.swift */; };
+		B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D69F252E3861003D4CE7 /* AuthService.swift */; };
+		B960D6A8252E38F5003D4CE7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D6A7252E38F5003D4CE7 /* Service.swift */; };
 		B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */; };
 		B96A8CFC252CD64F00A3A6B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B96A8CFB252CD64F00A3A6B0 /* GoogleService-Info.plist */; };
 		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
@@ -63,6 +65,8 @@
 		B9172A292527A7CE0037966E /* CustomAuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextField.swift; sourceTree = "<group>"; };
 		B9172A2E2527AAD30037966E /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		B9172A392527B8380037966E /* CustomAuthTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextButton.swift; sourceTree = "<group>"; };
+		B960D69F252E3861003D4CE7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B960D6A7252E38F5003D4CE7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		B96A8CFB252CD64F00A3A6B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -141,7 +145,6 @@
 				51DEEFC2CAB569DAB8E569FC /* Pods-TinderAppTests.debug.xcconfig */,
 				CFAF7B594EFB9FE46B50AF8E /* Pods-TinderAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -264,6 +267,8 @@
 		B9F6ACFE252255FF001EA75C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B960D69F252E3861003D4CE7 /* AuthService.swift */,
+				B960D6A7252E38F5003D4CE7 /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -520,12 +525,14 @@
 				B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */,
 				B9172A1C252798990037966E /* LoginController.swift in Sources */,
 				B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */,
+				B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */,
 				B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */,
 				B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */,
 				B9F6AD0925225C3B001EA75C /* Extensions.swift in Sources */,
 				B9F6AD04252256BF001EA75C /* HomeController.swift in Sources */,
 				B9F6ACCF2522552E001EA75C /* TinderApp.xcdatamodeld in Sources */,
 				B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */,
+				B960D6A8252E38F5003D4CE7 /* Service.swift in Sources */,
 				B9172A2A2527A7CE0037966E /* CustomAuthTextField.swift in Sources */,
 				B9F6AD0E25225E4E001EA75C /* HomeNavigationStackView.swift in Sources */,
 				B9F6ACC72522552E001EA75C /* SceneDelegate.swift in Sources */,

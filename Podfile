@@ -10,6 +10,9 @@ target 'TinderApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
+  pod 'SDWebImage'
+  pod 'JGProgressHUD'
 
   target 'TinderAppTests' do
     inherit! :search_paths
