@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeController: UIViewController {
 
@@ -13,7 +14,6 @@ class HomeController: UIViewController {
     private let bottomStack = BottomControlsStackView()
     private let deckView: UIView = {
         let view = UIView()
-        //view.backgroundColor = .systemYellow
         view.layer.cornerRadius = 5
         return view
     }()
@@ -24,6 +24,27 @@ class HomeController: UIViewController {
         configureCards()
     }
     
+    /*------> API <------*/
+    // Checa status usuario
+    func checkIfUserLoggedIn(){
+        if Auth.auth().currentUser == nil {
+            presentLoginController()
+        } else {
+            
+        }
+    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            print("DEBUG: Presenta login controller aqui")
+            presentLoginController()
+        } catch {
+            print("DEBUG: Error al intentar cerrar sesión")
+        }
+    }
+    /*------> Preparativos App <------*/
+    // Configura Tarjetas
     func configureCards(){
         let user1 = User(name: "Jane Doe", age: 23, images: [#imageLiteral(resourceName: "jane1"), #imageLiteral(resourceName: "jane2")])
         let user2 = User(name: "Meghan", age: 26, images: [#imageLiteral(resourceName: "lady5c"), #imageLiteral(resourceName: "kelly1")])
@@ -39,6 +60,7 @@ class HomeController: UIViewController {
         cardView2.fillSuperview()
     }
     
+    // Configura Interfaz
     func configureUI(){
         view.backgroundColor = .white
         
@@ -49,6 +71,16 @@ class HomeController: UIViewController {
         stack.isLayoutMarginsRelativeArrangement = true
         stack.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         stack.bringSubviewToFront(deckView )
+    }
+    
+    /*------> Navigations <------*/
+    private func presentLoginController() {
+        DispatchQueue.main.async {
+            let controller = LoginController()
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        }
     }
     
 }
