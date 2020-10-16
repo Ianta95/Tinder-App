@@ -81,7 +81,7 @@ class HomeController: UIViewController {
     // Configura Interfaz
     func configureUI(){
         view.backgroundColor = .white
-        
+        topStack.delegate = self
         let stack = UIStackView(arrangedSubviews: [topStack, deckView, bottomStack])
         stack.axis = .vertical
         view.addSubview(stack)
@@ -100,5 +100,19 @@ class HomeController: UIViewController {
             self.present(nav, animated: true, completion: nil)
         }
     }
+    
+}
+
+/*------> Extensions <------*/
+// Navegacion de StackView
+extension HomeController: HomeNavigationStackViewDelegate {
+    func showSettings() {
+        print("Click en settings")
+    }
+    
+    func showMessages() {
+        print("Click en Mensajes")
+    }
+    
     
 }
