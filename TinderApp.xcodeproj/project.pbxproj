@@ -10,11 +10,13 @@
 		4DD6D027E25866BBE00D0C84 /* Pods_TinderApp_TinderAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ABD60E59E6988C1646371F1 /* Pods_TinderApp_TinderAppUITests.framework */; };
 		95E641F7F6FD24F57EB9BA82 /* Pods_TinderApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8A80A14F1A8334EE304F26 /* Pods_TinderApp.framework */; };
 		B8435AA839810D8FE98FA99B /* Pods_TinderAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA5C46D72FE6C994FA2BE4C /* Pods_TinderAppTests.framework */; };
+		B910F0A0252EBFDB0055DB57 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B910F09F252EBFDB0055DB57 /* Constantes.swift */; };
 		B9172A1C252798990037966E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A1B252798990037966E /* LoginController.swift */; };
 		B9172A242527990C0037966E /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A232527990C0037966E /* RegistrationController.swift */; };
 		B9172A2A2527A7CE0037966E /* CustomAuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A292527A7CE0037966E /* CustomAuthTextField.swift */; };
 		B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A2E2527AAD30037966E /* CustomAuthButton.swift */; };
 		B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A392527B8380037966E /* CustomAuthTextButton.swift */; };
+		B95AB1562532C97700FFEF7C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95AB1552532C97600FFEF7C /* SettingsController.swift */; };
 		B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D69F252E3861003D4CE7 /* AuthService.swift */; };
 		B960D6A8252E38F5003D4CE7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D6A7252E38F5003D4CE7 /* Service.swift */; };
 		B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */; };
@@ -60,11 +62,13 @@
 		51DEEFC2CAB569DAB8E569FC /* Pods-TinderAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinderAppTests.debug.xcconfig"; path = "Target Support Files/Pods-TinderAppTests/Pods-TinderAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5ABD60E59E6988C1646371F1 /* Pods_TinderApp_TinderAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinderApp_TinderAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95022CB067B730E6C8ECFBAB /* Pods-TinderApp-TinderAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinderApp-TinderAppUITests.release.xcconfig"; path = "Target Support Files/Pods-TinderApp-TinderAppUITests/Pods-TinderApp-TinderAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B910F09F252EBFDB0055DB57 /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
 		B9172A1B252798990037966E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		B9172A232527990C0037966E /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		B9172A292527A7CE0037966E /* CustomAuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextField.swift; sourceTree = "<group>"; };
 		B9172A2E2527AAD30037966E /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		B9172A392527B8380037966E /* CustomAuthTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextButton.swift; sourceTree = "<group>"; };
+		B95AB1552532C97600FFEF7C /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		B960D69F252E3861003D4CE7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B960D6A7252E38F5003D4CE7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -167,6 +171,14 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		B95AB1542532C82600FFEF7C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B95AB1552532C97600FFEF7C /* SettingsController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		B9F6ACB82522552E001EA75C = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +270,7 @@
 		B9F6ACFD252255F3001EA75C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B95AB1542532C82600FFEF7C /* Settings */,
 				B9172A1A2527982E0037966E /* Authentication */,
 				B9F6AD03252256BF001EA75C /* HomeController.swift */,
 			);
@@ -279,6 +292,7 @@
 				B9172A282527A7AE0037966E /* Custom */,
 				B9F6AD0825225C3B001EA75C /* Extensions.swift */,
 				B9F6AD1F2522FEE8001EA75C /* Enums.swift */,
+				B910F09F252EBFDB0055DB57 /* Constantes.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -525,8 +539,10 @@
 				B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */,
 				B9172A1C252798990037966E /* LoginController.swift in Sources */,
 				B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */,
+				B95AB1562532C97700FFEF7C /* SettingsController.swift in Sources */,
 				B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */,
 				B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */,
+				B910F0A0252EBFDB0055DB57 /* Constantes.swift in Sources */,
 				B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */,
 				B9F6AD0925225C3B001EA75C /* Extensions.swift in Sources */,
 				B9F6AD04252256BF001EA75C /* HomeController.swift in Sources */,
