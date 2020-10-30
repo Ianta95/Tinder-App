@@ -8,6 +8,11 @@
 import UIKit
 import SDWebImage
 
+
+protocol CardViewDelegate: class {
+    func cardview(_ view: CardView, showProfileFor user: User)
+}
+
 class CardView: UIView {
     /*------> Componentes <------*/
     // Photo image
@@ -28,6 +33,7 @@ class CardView: UIView {
     private lazy var infoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleShowProfile), for: .touchUpInside)
         return button
     }()
     // Bar Stack View
@@ -38,6 +44,8 @@ class CardView: UIView {
     private let gradientLayer = CAGradientLayer()
     // View Model
     private let viewModel: CardViewModel
+    // Delegate
+    weak var delegate: CardViewDelegate?
     
     /*------> Overrides <------*/
     
@@ -104,7 +112,8 @@ extension CardView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleChangePhoto))
         addGestureRecognizer(tap)
     }
-    
+    /*------> Actions <------*/
+    // Pan gesture
     @objc func handlePanGesture(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -119,7 +128,7 @@ extension CardView {
             break
         }
     }
-    
+    // Cambiar foto
     @objc func handleChangePhoto(sender: UIPanGestureRecognizer) {
         let location = sender.location(in: nil).x
         let shouldShowNextPhoto = location > self.frame.width / 2
@@ -133,6 +142,11 @@ extension CardView {
         barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
     }
     
+    @objc func handleShowProfile(){
+        delegate?.cardview(self, showProfileFor: viewModel.user)
+    }
+    
+    /*------> Otras funciones <------*/
     func swipeCard(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: nil)
         let degrees: CGFloat = translation.x / 20
