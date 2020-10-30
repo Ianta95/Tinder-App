@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class HomeController: UIViewController {
-
+    /*------> Componentes <------*/
     private let topStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     
@@ -23,11 +23,15 @@ class HomeController: UIViewController {
         return view
     }()
     
+    /*------> Propiedades <------*/
+    private var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserLoggedIn()
         configureUI()
         fetchUsers()
+        fetchUser()
     }
     
     /*------> API <------*/
@@ -36,6 +40,7 @@ class HomeController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
             print("DEBUG: se ejecuto el completion")
+            self.user = user
         }
     }
     
@@ -107,11 +112,28 @@ class HomeController: UIViewController {
 // Navegacion de StackView
 extension HomeController: HomeNavigationStackViewDelegate {
     func showSettings() {
-        print("Click en settings")
+        guard let user = self.user else { return }
+        let controller = SettingsController(user: user)
+        controller.delegate = self
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     func showMessages() {
         print("Click en Mensajes")
+    }
+}
+// Actualizar de settings
+extension HomeController: SettingsControllerDelegate {
+    func settingsLogout(_ controller: SettingsController) {
+        controller.dismiss(animated: true, completion: nil)
+        logout()
+    }
+    
+    func settingsController(_ controller: SettingsController, update user: User) {
+        controller.dismiss(animated: true, completion: nil)
+        self.user = user
     }
     
     
