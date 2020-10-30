@@ -9,8 +9,7 @@ import UIKit
 import SDWebImage
 
 class CardView: UIView {
-    // View Model
-    private let viewModel: CardViewModel
+    /*------> Componentes <------*/
     // Photo image
     private let imageView: UIImageView = {
         let img = UIImageView()
@@ -18,8 +17,6 @@ class CardView: UIView {
         img.image = #imageLiteral(resourceName: "lady4c")
         return img
     }()
-    // Gradient background
-    private let gradientLayer = CAGradientLayer()
     // Info text
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
@@ -33,23 +30,28 @@ class CardView: UIView {
         button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
+    // Bar Stack View
+    private let barStackView = UIStackView()
     
+    /*------> Variables <-------*/
+    // Gradient background
+    private let gradientLayer = CAGradientLayer()
+    // View Model
+    private let viewModel: CardViewModel
     
+    /*------> Overrides <------*/
     
     init(viewModel: CardViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         configureGestureRecognizers()
         imageView.sd_setImage(with: viewModel.imageUrl)
-        /*if let urlString = viewModel.imageURLs.first {
-            guard let url = URL(string: urlString) else { return }
-            
-        }*/
-        backgroundColor = .systemPurple
+        
         layer.cornerRadius = 10
         clipsToBounds = true
         addSubview(imageView)
         imageView.fillSuperview()
+        configureBarStackView()
         configureGradientLayer()
         addSubview(infoLabel)
         infoLabel.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 16, paddingBottom: 16, paddingRight: 16)
@@ -67,11 +69,28 @@ class CardView: UIView {
         gradientLayer.frame = self.frame
     }
     
+    /*------> Preparativos Card view <------*/
+    // Configura gradient layer
     func configureGradientLayer() {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1.1]
         layer.addSublayer(gradientLayer)
     }
+    // Configura barstackView
+    func configureBarStackView() {
+        (0..<viewModel.imageURLs.count).forEach { _ in
+            let barView = UIView()
+            barView.backgroundColor = .barDeselectedColor
+            barStackView.addArrangedSubview(barView)
+        }
+        
+        barStackView.arrangedSubviews.first?.backgroundColor = .white
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingRight: 8, height: 4)
+        barStackView.spacing = 4
+        barStackView.distribution = .fillEqually
+    }
+    
     
 }
 
@@ -109,7 +128,9 @@ extension CardView {
         } else {
             viewModel.showPreviousPhoto()
         }
-        //imageView.image = viewModel.imageToShow
+        imageView.sd_setImage(with: viewModel.imageUrl)
+        barStackView.arrangedSubviews.forEach({ $0.backgroundColor = .barDeselectedColor})
+        barStackView.arrangedSubviews[viewModel.index].backgroundColor = .white
     }
     
     func swipeCard(sender: UIPanGestureRecognizer) {
