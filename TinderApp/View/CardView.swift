@@ -41,6 +41,10 @@ class CardView: UIView {
         super.init(frame: .zero)
         configureGestureRecognizers()
         imageView.sd_setImage(with: viewModel.imageUrl)
+        /*if let urlString = viewModel.imageURLs.first {
+            guard let url = URL(string: urlString) else { return }
+            
+        }*/
         backgroundColor = .systemPurple
         layer.cornerRadius = 10
         clipsToBounds = true

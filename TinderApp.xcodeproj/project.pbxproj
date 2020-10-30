@@ -16,11 +16,14 @@
 		B9172A2A2527A7CE0037966E /* CustomAuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A292527A7CE0037966E /* CustomAuthTextField.swift */; };
 		B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A2E2527AAD30037966E /* CustomAuthButton.swift */; };
 		B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A392527B8380037966E /* CustomAuthTextButton.swift */; };
+		B919FAC625489EFC00CECC78 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919FAC525489EFC00CECC78 /* SettingsCell.swift */; };
+		B919FACE2548A24800CECC78 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919FACD2548A24800CECC78 /* SettingsViewModel.swift */; };
 		B95AB1562532C97700FFEF7C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95AB1552532C97600FFEF7C /* SettingsController.swift */; };
 		B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D69F252E3861003D4CE7 /* AuthService.swift */; };
 		B960D6A8252E38F5003D4CE7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D6A7252E38F5003D4CE7 /* Service.swift */; };
 		B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */; };
 		B96A8CFC252CD64F00A3A6B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B96A8CFB252CD64F00A3A6B0 /* GoogleService-Info.plist */; };
+		B9A516EE254B600F0023CACD /* SettingsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A516ED254B600D0023CACD /* SettingsFooter.swift */; };
 		B9B16485253F6D3C005B5A66 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */; };
 		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
 		B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */; };
@@ -69,11 +72,14 @@
 		B9172A292527A7CE0037966E /* CustomAuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextField.swift; sourceTree = "<group>"; };
 		B9172A2E2527AAD30037966E /* CustomAuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthButton.swift; sourceTree = "<group>"; };
 		B9172A392527B8380037966E /* CustomAuthTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextButton.swift; sourceTree = "<group>"; };
+		B919FAC525489EFC00CECC78 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		B919FACD2548A24800CECC78 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		B95AB1552532C97600FFEF7C /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		B960D69F252E3861003D4CE7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B960D6A7252E38F5003D4CE7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		B96A8CFB252CD64F00A3A6B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B9A516ED254B600D0023CACD /* SettingsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooter.swift; sourceTree = "<group>"; };
 		B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
@@ -181,6 +187,16 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		B9A516F2254B60250023CACD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */,
+				B919FAC525489EFC00CECC78 /* SettingsCell.swift */,
+				B9A516ED254B600D0023CACD /* SettingsFooter.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		B9F6ACB82522552E001EA75C = {
 			isa = PBXGroup;
 			children = (
@@ -253,10 +269,10 @@
 		B9F6ACFB252255DE001EA75C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B9A516F2254B60250023CACD /* Settings */,
 				B9F6AD0D25225E4E001EA75C /* HomeNavigationStackView.swift */,
 				B9F6AD122522770A001EA75C /* BottomControlsStackView.swift */,
 				B9F6AD17252281CF001EA75C /* CardView.swift */,
-				B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -266,6 +282,7 @@
 			children = (
 				B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */,
 				B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */,
+				B919FACD2548A24800CECC78 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -544,7 +561,9 @@
 				B96A8CF7252CC83B00A3A6B0 /* AuthenticationViewModel.swift in Sources */,
 				B95AB1562532C97700FFEF7C /* SettingsController.swift in Sources */,
 				B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */,
+				B9A516EE254B600F0023CACD /* SettingsFooter.swift in Sources */,
 				B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */,
+				B919FAC625489EFC00CECC78 /* SettingsCell.swift in Sources */,
 				B910F0A0252EBFDB0055DB57 /* Constantes.swift in Sources */,
 				B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */,
 				B9F6AD0925225C3B001EA75C /* Extensions.swift in Sources */,
@@ -561,6 +580,7 @@
 				B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */,
 				B9F6AD132522770A001EA75C /* BottomControlsStackView.swift in Sources */,
 				B9172A242527990C0037966E /* RegistrationController.swift in Sources */,
+				B919FACE2548A24800CECC78 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
