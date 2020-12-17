@@ -28,4 +28,9 @@ class ProfileController: UIViewController {
         super.viewDidLoad()
     }
     
+    /*------> Configuraciones APP <------*/
+    // UI
+    private configureUI(){
+        view.backgroundColor = .white
+    }
 }
