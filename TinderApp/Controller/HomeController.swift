@@ -40,7 +40,12 @@ class HomeController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
             print("DEBUG: se ejecuto el completion")
-            self.user = user
+            if user != nil {
+                self.user = user
+            } else {
+                print("Llego vacio")
+                self.logout()
+            }
         }
     }
     
@@ -56,9 +61,10 @@ class HomeController: UIViewController {
     // Checa status usuario
     func checkIfUserLoggedIn(){
         if Auth.auth().currentUser == nil {
+            print("El usuario no existe")
             presentLoginController()
         } else {
-            
+            print("Hay usuario, es \(Auth.auth().currentUser)")
         }
     }
     // Cierra sesión

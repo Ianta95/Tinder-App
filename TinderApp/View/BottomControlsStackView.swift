@@ -16,23 +16,50 @@ class BottomControlsStackView: UIStackView {
     let boostButton = UIButton(type: .system)
     
     /*------> Life cycle <------*/
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(refresh: Bool = true, dislike: Bool = true, superLike: Bool = true, like: Bool = true, boost: Bool = true) {
+        super.init(frame: .zero)
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         distribution = .fillEqually
-        refreshButton.setImage(#imageLiteral(resourceName: "refresh_circle").withRenderingMode(.alwaysOriginal), for: .normal)
-        dislikeButton.setImage(#imageLiteral(resourceName: "dismiss_circle").withRenderingMode(.alwaysOriginal), for: .normal)
-        superLikeButton.setImage(#imageLiteral(resourceName: "super_like_circle").withRenderingMode(.alwaysOriginal), for: .normal)
-        likeButton.setImage(#imageLiteral(resourceName: "like_circle").withRenderingMode(.alwaysOriginal), for: .normal)
-        boostButton.setImage(#imageLiteral(resourceName: "boost_circle").withRenderingMode(.alwaysOriginal), for: .normal)
         
+        var buttons = [UIButton]()
+        if (refresh) {
+            refreshButton.setImage(#imageLiteral(resourceName: "refresh_circle").withRenderingMode(.alwaysOriginal), for: .normal)
+            buttons.append(refreshButton)
+            adjustImage(button: refreshButton)
+        }
+        if (dislike) {
+            dislikeButton.setImage(#imageLiteral(resourceName: "dismiss_circle").withRenderingMode(.alwaysOriginal), for: .normal)
+            buttons.append(dislikeButton)
+            adjustImage(button: dislikeButton)
+        }
+        if (superLike) {
+            superLikeButton.setImage(#imageLiteral(resourceName: "super_like_circle").withRenderingMode(.alwaysOriginal), for: .normal)
+            buttons.append(superLikeButton)
+            adjustImage(button: superLikeButton)
+        }
+        if (like) {
+            likeButton.setImage(#imageLiteral(resourceName: "like_circle").withRenderingMode(.alwaysOriginal), for: .normal)
+            buttons.append(likeButton)
+            adjustImage(button: likeButton)
+        }
+        if (boost) {
+            boostButton.setImage(#imageLiteral(resourceName: "boost_circle").withRenderingMode(.alwaysOriginal), for: .normal)
+            buttons.append(boostButton)
+            adjustImage(button: boostButton)
+        }
         // Settings
-        [refreshButton, dislikeButton, superLikeButton, likeButton, boostButton].forEach { view in
+        buttons.forEach { view in
             addArrangedSubview(view)
         }
         
         layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12 )
         
+    }
+    
+    private func adjustImage(button: UIButton) {
+        button.imageView!.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
     }
     
     required init(coder: NSCoder) {

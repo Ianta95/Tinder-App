@@ -18,6 +18,8 @@
 		B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9172A392527B8380037966E /* CustomAuthTextButton.swift */; };
 		B919FAC625489EFC00CECC78 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919FAC525489EFC00CECC78 /* SettingsCell.swift */; };
 		B919FACE2548A24800CECC78 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919FACD2548A24800CECC78 /* SettingsViewModel.swift */; };
+		B94E01A9258C5131000C66C4 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94E01A8258C5131000C66C4 /* ProfileCell.swift */; };
+		B94E01AE258C77B4000C66C4 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94E01AD258C77B4000C66C4 /* ProfileViewModel.swift */; };
 		B95AB1562532C97700FFEF7C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95AB1552532C97600FFEF7C /* SettingsController.swift */; };
 		B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D69F252E3861003D4CE7 /* AuthService.swift */; };
 		B960D6A8252E38F5003D4CE7 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B960D6A7252E38F5003D4CE7 /* Service.swift */; };
@@ -75,6 +77,8 @@
 		B9172A392527B8380037966E /* CustomAuthTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAuthTextButton.swift; sourceTree = "<group>"; };
 		B919FAC525489EFC00CECC78 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		B919FACD2548A24800CECC78 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		B94E01A8258C5131000C66C4 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		B94E01AD258C77B4000C66C4 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		B95AB1552532C97600FFEF7C /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		B960D69F252E3861003D4CE7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B960D6A7252E38F5003D4CE7 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 				B9F6AD0D25225E4E001EA75C /* HomeNavigationStackView.swift */,
 				B9F6AD122522770A001EA75C /* BottomControlsStackView.swift */,
 				B9F6AD17252281CF001EA75C /* CardView.swift */,
+				B94E01A8258C5131000C66C4 /* ProfileCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */,
 				B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */,
 				B919FACD2548A24800CECC78 /* SettingsViewModel.swift */,
+				B94E01AD258C77B4000C66C4 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -565,6 +571,8 @@
 				B95AB1562532C97700FFEF7C /* SettingsController.swift in Sources */,
 				B960D6A0252E3861003D4CE7 /* AuthService.swift in Sources */,
 				B9A516F7254BE0180023CACD /* ProfileController.swift in Sources */,
+				B94E01AE258C77B4000C66C4 /* ProfileViewModel.swift in Sources */,
+				B94E01A9258C5131000C66C4 /* ProfileCell.swift in Sources */,
 				B9A516EE254B600F0023CACD /* SettingsFooter.swift in Sources */,
 				B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */,
 				B919FAC625489EFC00CECC78 /* SettingsCell.swift in Sources */,
@@ -762,7 +770,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9UGRPH8W2X;
+				DEVELOPMENT_TEAM = L3LNYN6YV3;
 				INFOPLIST_FILE = TinderApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -783,7 +791,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9UGRPH8W2X;
+				DEVELOPMENT_TEAM = L3LNYN6YV3;
 				INFOPLIST_FILE = TinderApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
