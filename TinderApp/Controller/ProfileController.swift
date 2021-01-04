@@ -36,12 +36,14 @@ class ProfileController: UIViewController {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textColor = .black
         label.text = "Nombre del usuario"
         return label
     }()
     private let professionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .black
         label.text = "Profession del usuario"
         return label
     }()
@@ -49,10 +51,18 @@ class ProfileController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .black
         label.text = "Breve descrpición del usuario"
         return label
     }()
+    private let blurView: UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .regular)
+        let view = UIVisualEffectView(effect: blur)
+        return view
+    }()
     private let bottomButtonsStack = BottomControlsStackView(refresh: false, dislike: true, superLike: true, like: true, boost: false)
+    // Bar Stack View
+    private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageURLS.count)
     /*------> Override <------*/
     // Init
     init(user: User) {
@@ -68,7 +78,10 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        loadUserData()
     }
+    
+    
     
     /*------> Configuraciones APP <------*/
     // UI
@@ -86,14 +99,28 @@ class ProfileController: UIViewController {
         infoStack.spacing = 4
         view.addSubview(infoStack)
         infoStack.anchor(top: collectionView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 12, paddingLeft: 12, paddingRight: 12)
+        // Blur view
+        view.addSubview(blurView)
+        blurView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.topAnchor,
+                        right: view.rightAnchor)
         // Aádir botones inferiores
         view.addSubview(bottomButtonsStack)
         bottomButtonsStack.setDimensions(height: 80, width: 300)
         bottomButtonsStack.centerX(inView: view)
         bottomButtonsStack.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 32)
-    }
-    private func configureBottomControls() {
         
+        // Configura barra seleccion imagenes superior
+        configureBarStackView()
+    }
+    func loadUserData(){
+        infoLabel.attributedText = viewModel.userDetailsAttributedString
+        professionLabel.text = viewModel.profession
+        bioLabel.text = viewModel.bio
+    }
+    // Configura barstackView
+    func configureBarStackView() {
+        view.addSubview(barStackView)
+        barStackView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 56, paddingLeft: 8, paddingRight: 8, height: 4)
     }
     /*------> Actions <------*/
     @objc func handleDismiss(){
@@ -110,12 +137,8 @@ extension ProfileController: UICollectionViewDataSource {
     }
     // Celdas de la sección
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        if (indexPath.row == 0) {
-            cell.backgroundColor = .red
-        } else {
-            cell.backgroundColor = .blue
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProfileCell
+        cell.imageView.sd_setImage(with: viewModel.imageURLS[indexPath.row])
         return cell
     }
     
@@ -123,7 +146,9 @@ extension ProfileController: UICollectionViewDataSource {
 }
 /*------> Delegate <------*/
 extension ProfileController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        barStackView.setHighlighted(index: indexPath.row)
+    }
 }
 /*------> Flow Delegate*/
 extension ProfileController: UICollectionViewDelegateFlowLayout {
