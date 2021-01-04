@@ -94,6 +94,7 @@ class HomeController: UIViewController {
     func configureUI(){
         view.backgroundColor = .white
         topStack.delegate = self
+        bottomStack.delegate = self
         let stack = UIStackView(arrangedSubviews: [topStack, deckView, bottomStack])
         stack.axis = .vertical
         view.addSubview(stack)
@@ -150,4 +151,29 @@ extension HomeController: CardViewDelegate {
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
     }
+}
+
+// Bottom Buttons delegate
+extension HomeController: BottomControlsStackViewDelegate {
+    func handleRefresh() {
+        print("Click Refresh")
+    }
+    
+    func handleDislike() {
+        print("Click Dislike")
+    }
+    
+    func handleSuperLike() {
+        print("Click Superlike")
+    }
+    
+    func handleLike() {
+        print("Click Like")
+    }
+    
+    func handleBoost() {
+        print("Click Boost")
+    }
+    
+    
 }
