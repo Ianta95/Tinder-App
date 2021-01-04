@@ -43,7 +43,7 @@ class CardView: UIView {
     // Gradient background
     private let gradientLayer = CAGradientLayer()
     // View Model
-    private let viewModel: CardViewModel
+    let viewModel: CardViewModel
     // Delegate
     weak var delegate: CardViewDelegate?
     

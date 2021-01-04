@@ -25,6 +25,8 @@ class HomeController: UIViewController {
     
     /*------> Propiedades <------*/
     private var user: User?
+    private var topCardView: CardView?
+    private var cardViews = [CardView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,11 +85,12 @@ class HomeController: UIViewController {
         viewModels.forEach { (viewModel) in
             let cardView = CardView(viewModel: viewModel)
             cardView.delegate = self
+            //cardViews.append(cardView)
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
-        print("DEBUG: Configura las tarjetas")
-        
+        cardViews = deckView.subviews.map({ ($0 as? CardView)! })
+        topCardView = cardViews.last
     }
     
     // Configura Interfaz
@@ -112,6 +115,20 @@ class HomeController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
         }
+    }
+    
+    func performSwipeAnimation(like: Bool){
+        let translation: CGFloat = like ? 700 : -700
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            self.topCardView?.frame = CGRect(x: translation, y: 0, width: (self.topCardView?.frame.width)!, height: (self.topCardView?.frame.height)!)
+        }) { _ in
+            self.topCardView?.removeFromSuperview()
+            guard !self.cardViews.isEmpty else { return }
+            self.cardViews.remove(at: self.cardViews.count - 1)
+            self.topCardView = self.cardViews.last
+        }
+
     }
     
 }
@@ -161,6 +178,8 @@ extension HomeController: BottomControlsStackViewDelegate {
     
     func handleDislike() {
         print("Click Dislike")
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(like: false)
     }
     
     func handleSuperLike() {
@@ -168,7 +187,9 @@ extension HomeController: BottomControlsStackViewDelegate {
     }
     
     func handleLike() {
-        print("Click Like")
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(like: true)
+        print("DEBUG: Like user \(topCard.viewModel.user.name)")
     }
     
     func handleBoost() {
