@@ -10,10 +10,14 @@ import Firebase
 
 struct Service {
     
-    static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {
+    static func fetchUser(withUid uid: String, completion: @escaping(User?) -> Void) {
+        print("Iniciara busqueda con \(uid)")
         COLLECT_USERS.document(uid).getDocument { (snapshot, error) in
             print("DEBUG: Snapshot \(snapshot?.data())")
-            guard let dictionary = snapshot?.data() else { return }
+            guard let dictionary = snapshot?.data() else {
+                completion(nil)
+                return
+            }
             let user = User(dictionary: dictionary)
             completion(user)
         }

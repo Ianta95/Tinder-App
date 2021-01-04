@@ -40,7 +40,12 @@ class HomeController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
             print("DEBUG: se ejecuto el completion")
-            self.user = user
+            if user != nil {
+                self.user = user
+            } else {
+                print("Llego vacio")
+                self.logout()
+            }
         }
     }
     
@@ -56,9 +61,10 @@ class HomeController: UIViewController {
     // Checa status usuario
     func checkIfUserLoggedIn(){
         if Auth.auth().currentUser == nil {
+            print("El usuario no existe")
             presentLoginController()
         } else {
-            
+            print("Hay usuario, es \(Auth.auth().currentUser)")
         }
     }
     // Cierra sesión
@@ -76,6 +82,7 @@ class HomeController: UIViewController {
     func configureCards(){
         viewModels.forEach { (viewModel) in
             let cardView = CardView(viewModel: viewModel)
+            cardView.delegate = self
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
@@ -135,6 +142,12 @@ extension HomeController: SettingsControllerDelegate {
         controller.dismiss(animated: true, completion: nil)
         self.user = user
     }
-    
-    
+}
+// Card view delegate
+extension HomeController: CardViewDelegate {
+    func cardview(_ view: CardView, showProfileFor user: User) {
+        let controller = ProfileController(user: user)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true, completion: nil)
+    }
 }
