@@ -10,6 +10,7 @@ import Firebase
 
 struct Service {
     
+    // Obtener usuario
     static func fetchUser(withUid uid: String, completion: @escaping(User?) -> Void) {
         print("Iniciara busqueda con \(uid)")
         COLLECT_USERS.document(uid).getDocument { (snapshot, error) in
@@ -22,7 +23,7 @@ struct Service {
             completion(user)
         }
     }
-    
+    // Obtener usuarios
     static func fetchUsers(completion: @escaping([User]) -> Void) {
         var users = [User]()
         COLLECT_USERS.getDocuments { (snapshot, error) in
@@ -39,7 +40,7 @@ struct Service {
             })
         }
     }
-    
+    // Obtener save user data
     static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
         let data = ["uid": user.uid,
                           "fullname": user.name,
@@ -52,7 +53,7 @@ struct Service {
                           "maxSeekingAge": user.maxSeekingAge] as [String: Any]
         COLLECT_USERS.document(user.uid).setData(data, completion: completion)
     }
-    
+    // Subir imagen
     static func uploadImage(image: UIImage, completion: @escaping(String) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let filename = NSUUID().uuidString
@@ -65,6 +66,20 @@ struct Service {
             ref.downloadURL { (url, error) in
                 guard let imageUrl = url?.absoluteString else { return }
                 completion(imageUrl)
+            }
+        }
+    }
+    
+    static func saveSwipe(forUser user: User, isLike: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        //let shouldLike = isLike ? 1 : 0
+        COLLECT_SWIPES.document(uid).getDocument { (snapshot, error) in
+            let data = [user.uid: isLike]
+            print("data es \(data), snapshot \(snapshot) y error \(error)")
+            if (snapshot?.exists == true) {
+                COLLECT_SWIPES.document(uid).updateData(data)
+            } else {
+                COLLECT_SWIPES.document(uid).setData(data)
             }
         }
     }

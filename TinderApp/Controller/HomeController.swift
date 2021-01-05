@@ -177,9 +177,9 @@ extension HomeController: BottomControlsStackViewDelegate {
     }
     
     func handleDislike() {
-        print("Click Dislike")
         guard let topCard = topCardView else { return }
         performSwipeAnimation(like: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
     }
     
     func handleSuperLike() {
@@ -189,7 +189,7 @@ extension HomeController: BottomControlsStackViewDelegate {
     func handleLike() {
         guard let topCard = topCardView else { return }
         performSwipeAnimation(like: true)
-        print("DEBUG: Like user \(topCard.viewModel.user.name)")
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
     }
     
     func handleBoost() {

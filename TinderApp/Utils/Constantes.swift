@@ -9,3 +9,4 @@ import Foundation
 import Firebase
 
 let COLLECT_USERS = Firestore.firestore().collection("users")
+let COLLECT_SWIPES = Firestore.firestore().collection("swipes")
