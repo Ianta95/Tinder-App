@@ -53,6 +53,7 @@ class CardView: UIView {
     init(viewModel: CardViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
+        backgroundColor = .white
         configureGestureRecognizers()
         imageView.sd_setImage(with: viewModel.imageUrl)
         

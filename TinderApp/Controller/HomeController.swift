@@ -32,24 +32,13 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         checkIfUserLoggedIn()
         configureUI()
-        fetchUsers()
-        fetchUser()
+        //fetchUsers()
+        fetchCurrentUserAndCards()
     }
     
     /*------> API <------*/
     // Fetch data
-    func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Service.fetchUser(withUid: uid) { user in
-            print("DEBUG: se ejecuto el completion")
-            if user != nil {
-                self.user = user
-            } else {
-                print("Llego vacio")
-                self.logout()
-            }
-        }
-    }
+
     
     // Fetch all users
     func fetchUsers() {
@@ -57,6 +46,20 @@ class HomeController: UIViewController {
             print("DEBUG: Usuarios son \(users)")
             self.viewModels = users.map({ CardViewModel(user: $0) })
             
+        }
+    }
+    // Fetch data
+    func fetchCurrentUserAndCards(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Service.fetchUser(withUid: uid) { user in
+            print("DEBUG: se ejecuto el completion")
+            if user != nil {
+                self.user = user
+                self.fetchUsers()
+            } else {
+                print("Llego vacio")
+                self.logout()
+            }
         }
     }
     
@@ -111,6 +114,7 @@ class HomeController: UIViewController {
     private func presentLoginController() {
         DispatchQueue.main.async {
             let controller = LoginController()
+            controller.delegate = self
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
@@ -221,6 +225,13 @@ extension HomeController: ProfileControllerDelegate {
         }
         
     }
-    
-    
+}
+
+// Authenticate delegate
+extension HomeController: AuthenticationDelegate {
+    func authenticationComplete() {
+        dismiss(animated: true, completion: nil)
+        fetchCurrentUserAndCards()
+        
+    }
 }
