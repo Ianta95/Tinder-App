@@ -11,6 +11,7 @@ import SDWebImage
 
 protocol CardViewDelegate: class {
     func cardview(_ view: CardView, showProfileFor user: User)
+    func cardview(_ view: CardView, didLikeUser: Bool)
 }
 
 class CardView: UIView {
@@ -160,7 +161,8 @@ extension CardView {
             }
         } completion: { complete in
             if shouldDismissCard {
-                self.removeFromSuperview()
+                let didLike = direction == .right
+                self.delegate?.cardview(self, didLikeUser: didLike)
             }
         }
 
