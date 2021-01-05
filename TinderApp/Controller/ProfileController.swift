@@ -9,9 +9,15 @@ import UIKit
 
 private let reuseIdentifier = "ProfileCell"
 
+protocol ProfileControllerDelegate: class {
+    func profileController(_ controller: ProfileController, didLikeUser user: User)
+    func profileController(_ controller: ProfileController, didDislikeUser user: User)
+}
+
 class ProfileController: UIViewController {
     /*------> Variables <------*/
     private let user: User
+    weak var delegate: ProfileControllerDelegate?
     private lazy var viewModel = ProfileViewModel(user: user)
     
     /*------> Componentes <------*/
@@ -105,6 +111,7 @@ class ProfileController: UIViewController {
                         right: view.rightAnchor)
         // Aádir botones inferiores
         view.addSubview(bottomButtonsStack)
+        bottomButtonsStack.delegate = self
         bottomButtonsStack.setDimensions(height: 80, width: 300)
         bottomButtonsStack.centerX(inView: view)
         bottomButtonsStack.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 32)
@@ -163,4 +170,28 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+}
+// Bottom stackview delegate
+extension ProfileController: BottomControlsStackViewDelegate {
+    func handleRefresh() {
+        // Nada que hacer
+    }
+    
+    func handleDislike() {
+        delegate?.profileController(self, didDislikeUser: user)
+    }
+    
+    func handleSuperLike() {
+        // Nada que hacer
+    }
+    
+    func handleLike() {
+        delegate?.profileController(self, didLikeUser: user)
+    }
+    
+    func handleBoost() {
+        // Nada que hacer
+    }
+    
+    
 }

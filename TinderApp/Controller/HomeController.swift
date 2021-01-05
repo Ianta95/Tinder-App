@@ -173,6 +173,7 @@ extension HomeController: CardViewDelegate {
     
     func cardview(_ view: CardView, showProfileFor user: User) {
         let controller = ProfileController(user: user)
+        controller.delegate = self
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
     }
@@ -202,6 +203,23 @@ extension HomeController: BottomControlsStackViewDelegate {
     
     func handleBoost() {
         print("Click Boost")
+    }
+}
+// Profile Controller delegate
+extension HomeController: ProfileControllerDelegate {
+    func profileController(_ controller: ProfileController, didLikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(like: true)
+            Service.saveSwipe(forUser: user, isLike: true)
+        }
+    }
+    
+    func profileController(_ controller: ProfileController, didDislikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(like: false)
+            Service.saveSwipe(forUser: user, isLike: false)
+        }
+        
     }
     
     
