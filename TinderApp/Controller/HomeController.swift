@@ -41,11 +41,10 @@ class HomeController: UIViewController {
 
     
     // Fetch all users
-    func fetchUsers() {
-        Service.fetchUsers { users in
+    func fetchUsers(forCurrentUser user: User) {
+        Service.fetchUsers(forCurrentUser: user) { users in
             print("DEBUG: Usuarios son \(users)")
             self.viewModels = users.map({ CardViewModel(user: $0) })
-            
         }
     }
     // Fetch data
@@ -55,7 +54,7 @@ class HomeController: UIViewController {
             print("DEBUG: se ejecuto el completion")
             if user != nil {
                 self.user = user
-                self.fetchUsers()
+                self.fetchUsers(forCurrentUser: user!)
             } else {
                 print("Llego vacio")
                 self.logout()
