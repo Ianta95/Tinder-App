@@ -11,6 +11,7 @@ import SDWebImage
 
 protocol CardViewDelegate: class {
     func cardview(_ view: CardView, showProfileFor user: User)
+    func cardview(_ view: CardView, didLikeUser: Bool)
 }
 
 class CardView: UIView {
@@ -43,7 +44,7 @@ class CardView: UIView {
     // Gradient background
     private let gradientLayer = CAGradientLayer()
     // View Model
-    private let viewModel: CardViewModel
+    let viewModel: CardViewModel
     // Delegate
     weak var delegate: CardViewDelegate?
     
@@ -52,6 +53,7 @@ class CardView: UIView {
     init(viewModel: CardViewModel) {
         self.viewModel = viewModel
         super.init(frame: .zero)
+        backgroundColor = .white
         configureGestureRecognizers()
         imageView.sd_setImage(with: viewModel.imageUrl)
         
@@ -160,7 +162,8 @@ extension CardView {
             }
         } completion: { complete in
             if shouldDismissCard {
-                self.removeFromSuperview()
+                let didLike = direction == .right
+                self.delegate?.cardview(self, didLikeUser: didLike)
             }
         }
 

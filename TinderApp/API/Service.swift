@@ -10,6 +10,7 @@ import Firebase
 
 struct Service {
     
+    // Obtener usuario
     static func fetchUser(withUid uid: String, completion: @escaping(User?) -> Void) {
         print("Iniciara busqueda con \(uid)")
         COLLECT_USERS.document(uid).getDocument { (snapshot, error) in
@@ -22,24 +23,29 @@ struct Service {
             completion(user)
         }
     }
-    
-    static func fetchUsers(completion: @escaping([User]) -> Void) {
+    // Obtener usuarios
+    static func fetchUsers(forCurrentUser user: User, completion: @escaping([User]) -> Void) {
         var users = [User]()
-        COLLECT_USERS.getDocuments { (snapshot, error) in
-            snapshot?.documents.forEach({ (document) in
+        let query = COLLECT_USERS
+            .whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
+            .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
+        query.getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            snapshot.documents.forEach({ (document) in
                 let dictionary = document.data()
                 let user = User(dictionary: dictionary)
                 
+                guard user.uid != Auth.auth().currentUser?.uid else { return }
                 users.append(user)
                 
-                 if users.count == snapshot?.documents.count {
+                if users.count == snapshot.documents.count - 1 {
                     print("DEBUG: Users array count is \(users.count)")
                     completion(users)
                 }
             })
         }
     }
-    
+    // Obtener save user data
     static func saveUserData(user: User, completion: @escaping(Error?) -> Void) {
         let data = ["uid": user.uid,
                           "fullname": user.name,
@@ -52,7 +58,7 @@ struct Service {
                           "maxSeekingAge": user.maxSeekingAge] as [String: Any]
         COLLECT_USERS.document(user.uid).setData(data, completion: completion)
     }
-    
+    // Subir imagen
     static func uploadImage(image: UIImage, completion: @escaping(String) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let filename = NSUUID().uuidString
@@ -65,6 +71,20 @@ struct Service {
             ref.downloadURL { (url, error) in
                 guard let imageUrl = url?.absoluteString else { return }
                 completion(imageUrl)
+            }
+        }
+    }
+    
+    static func saveSwipe(forUser user: User, isLike: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        //let shouldLike = isLike ? 1 : 0
+        COLLECT_SWIPES.document(uid).getDocument { (snapshot, error) in
+            let data = [user.uid: isLike]
+            print("data es \(data), snapshot \(snapshot) y error \(error)")
+            if (snapshot?.exists == true) {
+                COLLECT_SWIPES.document(uid).updateData(data)
+            } else {
+                COLLECT_SWIPES.document(uid).setData(data)
             }
         }
     }

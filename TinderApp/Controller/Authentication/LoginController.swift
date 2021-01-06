@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol AuthenticationDelegate: class {
+    func authenticationComplete()
+}
+
 class LoginController: UIViewController {
+    
     /*------> Propiedades <------*/
     // Components
     private let iconImageView: UIImageView = {
@@ -30,6 +35,7 @@ class LoginController: UIViewController {
     }()
     // Variables
     private var viewModel = LoginViewModel()
+    weak var delegate: AuthenticationDelegate?
     /*------> Overrides <------*/
     
     override func viewDidLoad() {
@@ -48,12 +54,14 @@ class LoginController: UIViewController {
                 return
             }
             print("DEBUG: Se logro hacer login correctamente")
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
         }
     }
     
     @objc func handleShowRegistration(){
-        navigationController?.pushViewController(RegistrationController(), animated: true)
+        let controller = RegistrationController()
+        controller.delegate = delegate
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc func textDidChange(sender: UITextField) {

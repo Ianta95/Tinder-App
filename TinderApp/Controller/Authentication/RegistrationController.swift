@@ -34,6 +34,7 @@ class RegistrationController: UIViewController {
     }()
     // Variables
     private var viewModel = RegistrationViewModel()
+    weak var delegate: AuthenticationDelegate?
     private var profileImage: UIImage?
     
     /*------> Overrides <------*/
@@ -59,6 +60,7 @@ class RegistrationController: UIViewController {
             if let error = error {
                 return 
             }
+            self.delegate?.authenticationComplete()
         }
     }
     @objc func handleShowLogin(){

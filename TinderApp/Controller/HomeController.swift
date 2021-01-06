@@ -25,36 +25,40 @@ class HomeController: UIViewController {
     
     /*------> Propiedades <------*/
     private var user: User?
+    private var topCardView: CardView?
+    private var cardViews = [CardView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserLoggedIn()
         configureUI()
-        fetchUsers()
-        fetchUser()
+        //fetchUsers()
+        fetchCurrentUserAndCards()
     }
     
     /*------> API <------*/
     // Fetch data
-    func fetchUser() {
+
+    
+    // Fetch all users
+    func fetchUsers(forCurrentUser user: User) {
+        Service.fetchUsers(forCurrentUser: user) { users in
+            print("DEBUG: Usuarios son \(users)")
+            self.viewModels = users.map({ CardViewModel(user: $0) })
+        }
+    }
+    // Fetch data
+    func fetchCurrentUserAndCards(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
             print("DEBUG: se ejecuto el completion")
             if user != nil {
                 self.user = user
+                self.fetchUsers(forCurrentUser: user!)
             } else {
                 print("Llego vacio")
                 self.logout()
             }
-        }
-    }
-    
-    // Fetch all users
-    func fetchUsers() {
-        Service.fetchUsers { users in
-            print("DEBUG: Usuarios son \(users)")
-            self.viewModels = users.map({ CardViewModel(user: $0) })
-            
         }
     }
     
@@ -83,17 +87,19 @@ class HomeController: UIViewController {
         viewModels.forEach { (viewModel) in
             let cardView = CardView(viewModel: viewModel)
             cardView.delegate = self
+            //cardViews.append(cardView)
             deckView.addSubview(cardView)
             cardView.fillSuperview()
         }
-        print("DEBUG: Configura las tarjetas")
-        
+        cardViews = deckView.subviews.map({ ($0 as? CardView)! })
+        topCardView = cardViews.last
     }
     
     // Configura Interfaz
     func configureUI(){
         view.backgroundColor = .white
         topStack.delegate = self
+        bottomStack.delegate = self
         let stack = UIStackView(arrangedSubviews: [topStack, deckView, bottomStack])
         stack.axis = .vertical
         view.addSubview(stack)
@@ -107,10 +113,25 @@ class HomeController: UIViewController {
     private func presentLoginController() {
         DispatchQueue.main.async {
             let controller = LoginController()
+            controller.delegate = self
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
         }
+    }
+    
+    func performSwipeAnimation(like: Bool){
+        let translation: CGFloat = like ? 700 : -700
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            self.topCardView?.frame = CGRect(x: translation, y: 0, width: (self.topCardView?.frame.width)!, height: (self.topCardView?.frame.height)!)
+        }) { _ in
+            self.topCardView?.removeFromSuperview()
+            guard !self.cardViews.isEmpty else { return }
+            self.cardViews.remove(at: self.cardViews.count - 1)
+            self.topCardView = self.cardViews.last
+        }
+
     }
     
 }
@@ -145,9 +166,71 @@ extension HomeController: SettingsControllerDelegate {
 }
 // Card view delegate
 extension HomeController: CardViewDelegate {
+    func cardview(_ view: CardView, didLikeUser: Bool) {
+        view.removeFromSuperview()
+        self.cardViews.removeAll(where: { view == $0})
+        guard let user = topCardView?.viewModel.user else { return }
+        Service.saveSwipe(forUser: user, isLike: didLikeUser)
+        self.topCardView = cardViews.last
+    }
+    
     func cardview(_ view: CardView, showProfileFor user: User) {
         let controller = ProfileController(user: user)
+        controller.delegate = self
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
+    }
+}
+
+// Bottom Buttons delegate
+extension HomeController: BottomControlsStackViewDelegate {
+    func handleRefresh() {
+        print("Click Refresh")
+    }
+    
+    func handleDislike() {
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(like: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
+    }
+    
+    func handleSuperLike() {
+        print("Click Superlike")
+    }
+    
+    func handleLike() {
+        guard let topCard = topCardView else { return }
+        performSwipeAnimation(like: true)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
+    }
+    
+    func handleBoost() {
+        print("Click Boost")
+    }
+}
+// Profile Controller delegate
+extension HomeController: ProfileControllerDelegate {
+    func profileController(_ controller: ProfileController, didLikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(like: true)
+            Service.saveSwipe(forUser: user, isLike: true)
+        }
+    }
+    
+    func profileController(_ controller: ProfileController, didDislikeUser user: User) {
+        controller.dismiss(animated: true) {
+            self.performSwipeAnimation(like: false)
+            Service.saveSwipe(forUser: user, isLike: false)
+        }
+        
+    }
+}
+
+// Authenticate delegate
+extension HomeController: AuthenticationDelegate {
+    func authenticationComplete() {
+        dismiss(animated: true, completion: nil)
+        fetchCurrentUserAndCards()
+        
     }
 }
