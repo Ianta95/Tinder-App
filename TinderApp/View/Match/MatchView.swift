@@ -50,7 +50,7 @@ class MatchView: UIView {
     }()
     // Boton para mandar mensaje
     private let sendMessageButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = SendMessageButton(type: .system)
         button.setTitle("Mandar mensaje", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapSendMessage), for: .touchUpInside)
@@ -113,7 +113,7 @@ class MatchView: UIView {
     func configureUI(){
         views.forEach { view in
             addSubview(view)
-            view.alpha = 0
+            view.alpha = 1
         }
         // Configurar imagen perfil
         currentUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
@@ -127,6 +127,7 @@ class MatchView: UIView {
         matchUserImageView.centerY(inView: self)
         // Configurar los botones
         sendMessageButton.anchor(top: currentUserImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 32, paddingLeft: 48, paddingRight: 48)
+        sendMeesageButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         keepSwipingButton.anchor(top: sendMessageButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 32, paddingLeft: 48, paddingRight: 48)
         descriptionLabel.anchor(left: leftAnchor, bottom: currentUserImageView.topAnchor, right: rightAnchor, paddingBottom: 32)
         
@@ -136,10 +137,9 @@ class MatchView: UIView {
     }
     // Configurar efecto borroso
     func configureBlurView(){
+        print("Inicia configure blur view")
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissal))
         visualEffectView.addGestureRecognizer(tap)
-        
-        
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
         visualEffectView.alpha = 0
