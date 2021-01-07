@@ -27,6 +27,7 @@ class MatchView: UIView {
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
+        label.text = "Tu y X han hecho match"
         return label
     }()
     // Imagen del usuario
@@ -82,6 +83,7 @@ class MatchView: UIView {
         self.matchedUser = matchedUser
         super.init(frame: .zero)
         configureBlurView()
+        configureUI()
     }
     // Required init
     required init?(coder: NSCoder) {
@@ -89,13 +91,21 @@ class MatchView: UIView {
     }
     
     /*------> Acciones <------*/
-    // Boton mandar mensaje
+    // Click mandar mensaje
     @objc func didTapSendMessage(){
         
     }
-    //Boton seguir buscando
+    // Click seguir buscando
     @objc func didTapKeepSwiping(){
         
+    }
+    // Click pantalla borrosa
+    @objc func handleDismissal(){
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.alpha = 0
+        }) { _ in
+            self.removeFromSuperview()
+        }
     }
     
     /*------> Preparativos App <------*/
@@ -105,17 +115,36 @@ class MatchView: UIView {
             addSubview(view)
             view.alpha = 0
         }
+        // Configurar imagen perfil
+        currentUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
+        currentUserImageView.setDimensions(height: 140, width: 140)
+        currentUserImageView.layer.cornerRadius = 140 / 2
+        currentUserImageView.centerY(inView: self)
+        // Configurar imagen del match
+        matchUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
+        matchUserImageView.setDimensions(height: 140, width: 140)
+        matchUserImageView.layer.cornerRadius = 140 / 2
+        matchUserImageView.centerY(inView: self)
+        // Configurar los botones
+        sendMessageButton.anchor(top: currentUserImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 32, paddingLeft: 48, paddingRight: 48)
+        keepSwipingButton.anchor(top: sendMessageButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 32, paddingLeft: 48, paddingRight: 48)
+        descriptionLabel.anchor(left: leftAnchor, bottom: currentUserImageView.topAnchor, right: rightAnchor, paddingBottom: 32)
         
-        matchImageView.anchor()
+        matchImageView.anchor(bottom: descriptionLabel.topAnchor)
+        matchImageView.setDimensions(height: 80, width: 300)
+        matchImageView.centerX(inView: self)
     }
     // Configurar efecto borroso
     func configureBlurView(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissal))
+        visualEffectView.addGestureRecognizer(tap)
+        
+        
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
         visualEffectView.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.visualEffectView.alpha = 1
         }, completion: nil)
-
     }
 }
