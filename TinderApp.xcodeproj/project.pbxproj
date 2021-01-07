@@ -31,6 +31,7 @@
 		B9A516EE254B600F0023CACD /* SettingsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A516ED254B600D0023CACD /* SettingsFooter.swift */; };
 		B9A516F7254BE0180023CACD /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A516F6254BE0180023CACD /* ProfileController.swift */; };
 		B9B16485253F6D3C005B5A66 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */; };
+		B9DACEA925A7B09E00AA01E7 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DACEA825A7B09E00AA01E7 /* KeepSwipingButton.swift */; };
 		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
 		B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */; };
 		B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC42522552E001EA75C /* AppDelegate.swift */; };
@@ -93,6 +94,7 @@
 		B9A516ED254B600D0023CACD /* SettingsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooter.swift; sourceTree = "<group>"; };
 		B9A516F6254BE0180023CACD /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
+		B9DACEA825A7B09E00AA01E7 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B9F6ACC12522552E001EA75C /* TinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 			children = (
 				B96F499E25A586B20009BC73 /* MatchView.swift */,
 				B974FF5125A7A92000406CA8 /* SendMessageButton.swift */,
+				B9DACEA825A7B09E00AA01E7 /* KeepSwipingButton.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				B9F6ACCF2522552E001EA75C /* TinderApp.xcdatamodeld in Sources */,
 				B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */,
 				B960D6A8252E38F5003D4CE7 /* Service.swift in Sources */,
+				B9DACEA925A7B09E00AA01E7 /* KeepSwipingButton.swift in Sources */,
 				B9172A2A2527A7CE0037966E /* CustomAuthTextField.swift in Sources */,
 				B9F6AD0E25225E4E001EA75C /* HomeNavigationStackView.swift in Sources */,
 				B9F6ACC72522552E001EA75C /* SceneDelegate.swift in Sources */,

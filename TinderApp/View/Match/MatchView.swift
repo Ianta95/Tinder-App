@@ -58,7 +58,7 @@ class MatchView: UIView {
     }()
     // Boton para seguir en swipes
     private let keepSwipingButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = KeepSwipingButton(type: .system)
         button.setTitle("Seguir buscando", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapKeepSwiping), for: .touchUpInside)
@@ -127,8 +127,9 @@ class MatchView: UIView {
         matchUserImageView.centerY(inView: self)
         // Configurar los botones
         sendMessageButton.anchor(top: currentUserImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 32, paddingLeft: 48, paddingRight: 48)
-        sendMeesageButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        sendMessageButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         keepSwipingButton.anchor(top: sendMessageButton.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 32, paddingLeft: 48, paddingRight: 48)
+        keepSwipingButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         descriptionLabel.anchor(left: leftAnchor, bottom: currentUserImageView.topAnchor, right: rightAnchor, paddingBottom: 32)
         
         matchImageView.anchor(bottom: descriptionLabel.topAnchor)
