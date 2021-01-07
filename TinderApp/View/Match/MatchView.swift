@@ -84,6 +84,7 @@ class MatchView: UIView {
         super.init(frame: .zero)
         configureBlurView()
         configureUI()
+        configureAnimations()
     }
     // Required init
     required init?(coder: NSCoder) {
@@ -113,15 +114,15 @@ class MatchView: UIView {
     func configureUI(){
         views.forEach { view in
             addSubview(view)
-            view.alpha = 1
+            view.alpha = 0
         }
         // Configurar imagen perfil
-        currentUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
+        currentUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
         currentUserImageView.setDimensions(height: 140, width: 140)
         currentUserImageView.layer.cornerRadius = 140 / 2
         currentUserImageView.centerY(inView: self)
         // Configurar imagen del match
-        matchUserImageView.anchor(right: centerXAnchor, paddingRight: 16)
+        matchUserImageView.anchor(left: centerXAnchor, paddingLeft: 16)
         matchUserImageView.setDimensions(height: 140, width: 140)
         matchUserImageView.layer.cornerRadius = 140 / 2
         matchUserImageView.centerY(inView: self)
@@ -135,6 +136,35 @@ class MatchView: UIView {
         matchImageView.anchor(bottom: descriptionLabel.topAnchor)
         matchImageView.setDimensions(height: 80, width: 300)
         matchImageView.centerX(inView: self)
+    }
+    // Prepara animaciones de match view
+    func configureAnimations() {
+        views.forEach({ $0.alpha = 1})
+        let angle = 30 * CGFloat.pi / 180
+        currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: 200, y: 0))
+        matchUserImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: -200, y: 0))
+        
+        self.sendMessageButton.transform = CGAffineTransform(translationX: -500, y: 0)
+        self.keepSwipingButton.transform = CGAffineTransform(translationX: 500, y: 0)
+        
+        UIView.animateKeyframes(withDuration: 1.3, delay: 0, options: .calculationModeCubic, animations: {
+            
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.45) {
+                self.currentUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
+                self.matchUserImageView.transform = CGAffineTransform(rotationAngle: angle )
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.6, relativeDuration: 0.45) {
+                self.currentUserImageView.transform = .identity
+                self.matchUserImageView.transform = .identity
+            }
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.75, delay: 0.5*1.3, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            self.sendMessageButton.transform = .identity
+            self.keepSwipingButton.transform = .identity
+        }, completion: nil)
+        
     }
     // Configurar efecto borroso
     func configureBlurView(){
