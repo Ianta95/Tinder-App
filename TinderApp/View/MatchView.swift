@@ -11,7 +11,7 @@ import UIKit
 class MatchView: UIView {
     /*------> Propiedades <------*/
     private let currentUser: User
-    private let matchedUser: User+
+    private let matchedUser: User
     
     /*------> Componentes <------*/
     // Imagen match
@@ -54,7 +54,7 @@ class MatchView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapSendMessage), for: .touchUpInside)
         return button
-    }
+    }()
     // Boton para seguir en swipes
     private let keepSwipingButton: UIButton = {
         let button = UIButton(type: .system)
@@ -62,7 +62,7 @@ class MatchView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTapKeepSwiping), for: .touchUpInside)
         return button
-    }
+    }()
     // Imagen con efecto visual
     let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
@@ -113,9 +113,9 @@ class MatchView: UIView {
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
         visualEffectView.alpha = 0
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.visualEffectView.alpha = 1
-        } completion: nil)
+        }, completion: nil)
 
     }
 }
