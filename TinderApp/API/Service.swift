@@ -29,20 +29,19 @@ struct Service {
         let query = COLLECT_USERS
             .whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
             .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
-        query.getDocuments { (snapshot, error) in
-            guard let snapshot = snapshot else { return }
-            snapshot.documents.forEach({ (document) in
-                let dictionary = document.data()
-                let user = User(dictionary: dictionary)
-                
-                guard user.uid != Auth.auth().currentUser?.uid else { return }
-                users.append(user)
-                
-                if users.count == snapshot.documents.count - 1 {
-                    print("DEBUG: Users array count is \(users.count)")
-                    completion(users)
-                }
-            })
+        
+        fetchSwipes { swipedUserIDs in
+            query.getDocuments { (snapshot, error) in
+                guard let snapshot = snapshot else { return }
+                snapshot.documents.forEach({ (document) in
+                    let dictionary = document.data()
+                    let user = User(dictionary: dictionary)
+                    guard user.uid != Auth.auth().currentUser?.uid else { return }
+                    guard swipedUserIDs[user.uid] == nil else { return }
+                    users.append(user)
+                })
+                completion(users)
+            }
         }
     }
     // Obtener save user data
@@ -77,7 +76,7 @@ struct Service {
             }
         }
     }
-    
+    // Salvar swipe
     static func saveSwipe(forUser user: User, isLike: Bool, completion: ((Error?) -> Void)?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         COLLECT_SWIPES.document(uid).getDocument { (snapshot, error) in
@@ -90,7 +89,7 @@ struct Service {
             }
         }
     }
-    
+    // Checar si existe match
     static func checkIfMatchExists(forUser user: User, completion: @escaping(Bool) -> Void) {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         COLLECT_SWIPES.document(user.uid).getDocument { (snapshot, error) in
@@ -100,4 +99,18 @@ struct Service {
         }
         
     }
+    // Obtener swipes
+    private static func fetchSwipes(completion: @escaping([String: Bool]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        COLLECT_SWIPES.document(uid).getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() as? [String: Bool] else {
+                completion([String: Bool]())
+                return
+            }
+            
+            completion(data)
+        }
+    }
+    
+    
 }

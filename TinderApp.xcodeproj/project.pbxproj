@@ -33,6 +33,7 @@
 		B9B16485253F6D3C005B5A66 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */; };
 		B9DACEA925A7B09E00AA01E7 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DACEA825A7B09E00AA01E7 /* KeepSwipingButton.swift */; };
 		B9DACEAE25A7BD8500AA01E7 /* MatchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DACEAD25A7BD8500AA01E7 /* MatchViewViewModel.swift */; };
+		B9DACEB325A81C0C00AA01E7 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DACEB225A81C0C00AA01E7 /* MessagesController.swift */; };
 		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
 		B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */; };
 		B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC42522552E001EA75C /* AppDelegate.swift */; };
@@ -97,6 +98,7 @@
 		B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		B9DACEA825A7B09E00AA01E7 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		B9DACEAD25A7BD8500AA01E7 /* MatchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewViewModel.swift; sourceTree = "<group>"; };
+		B9DACEB225A81C0C00AA01E7 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B9F6ACC12522552E001EA75C /* TinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,6 +335,7 @@
 				B9172A1A2527982E0037966E /* Authentication */,
 				B9F6AD03252256BF001EA75C /* HomeController.swift */,
 				B9A516F6254BE0180023CACD /* ProfileController.swift */,
+				B9DACEB225A81C0C00AA01E7 /* MessagesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				B9F6AD202522FEE8001EA75C /* Enums.swift in Sources */,
 				B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */,
 				B9F6AD132522770A001EA75C /* BottomControlsStackView.swift in Sources */,
+				B9DACEB325A81C0C00AA01E7 /* MessagesController.swift in Sources */,
 				B974FF5225A7A92000406CA8 /* SendMessageButton.swift in Sources */,
 				B9172A242527990C0037966E /* RegistrationController.swift in Sources */,
 				B919FACE2548A24800CECC78 /* SettingsViewModel.swift in Sources */,

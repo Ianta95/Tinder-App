@@ -166,7 +166,11 @@ extension HomeController: HomeNavigationStackViewDelegate {
     }
     
     func showMessages() {
-        print("Click en Mensajes")
+        guard let user = user else { return }
+        let controller = MessagesController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
 // Actualizar de settings
