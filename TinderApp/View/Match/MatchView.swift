@@ -8,10 +8,14 @@
 import Foundation
 import UIKit
 
+protocol MatchViewDelegate: class {
+    func matchView(_ view: MatchView, wantsToSendMessageTo user: User)
+}
+
 class MatchView: UIView {
     /*------> Propiedades <------*/
-    private let currentUser: User
-    private let matchedUser: User
+    private let viewModel: MatchViewViewModel
+    weak var delegate: MatchViewDelegate?
     
     /*------> Componentes <------*/
     // Imagen match
@@ -33,7 +37,7 @@ class MatchView: UIView {
     // Imagen del usuario
     private let currentUserImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "lady4c"))
-        iv.contentMode = .scaleToFill
+        iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 2
         iv.layer.borderColor = UIColor.white.cgColor
@@ -42,7 +46,7 @@ class MatchView: UIView {
     // Imagen del match
     private let matchUserImageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "lady4c"))
-        iv.contentMode = .scaleToFill
+        iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 2
         iv.layer.borderColor = UIColor.white.cgColor
@@ -61,7 +65,7 @@ class MatchView: UIView {
         let button = KeepSwipingButton(type: .system)
         button.setTitle("Seguir buscando", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(didTapKeepSwiping), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleDismissal), for: .touchUpInside)
         return button
     }()
     // Imagen con efecto visual
@@ -78,10 +82,10 @@ class MatchView: UIView {
     
     /*------> Ciclo App <------*/
     // Init
-    init(currentUser: User, matchedUser: User) {
-        self.currentUser = currentUser
-        self.matchedUser = matchedUser
+    init(viewModel: MatchViewViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
+        loadUserData()
         configureBlurView()
         configureUI()
         configureAnimations()
@@ -94,11 +98,7 @@ class MatchView: UIView {
     /*------> Acciones <------*/
     // Click mandar mensaje
     @objc func didTapSendMessage(){
-        
-    }
-    // Click seguir buscando
-    @objc func didTapKeepSwiping(){
-        
+        delegate?.matchView(self, wantsToSendMessageTo: viewModel.matchedUser)
     }
     // Click pantalla borrosa
     @objc func handleDismissal(){
@@ -110,6 +110,12 @@ class MatchView: UIView {
     }
     
     /*------> Preparativos App <------*/
+    // Cargar informacion
+    func loadUserData() {
+        descriptionLabel.text = viewModel.matchLabelText
+        currentUserImageView.sd_setImage(with: viewModel.currentUserImageURL)
+        matchUserImageView.sd_setImage(with: viewModel.matchedUserImageURL)
+    }
     // Configurar UI
     func configureUI(){
         views.forEach { view in

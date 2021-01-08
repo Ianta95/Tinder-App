@@ -32,6 +32,7 @@
 		B9A516F7254BE0180023CACD /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A516F6254BE0180023CACD /* ProfileController.swift */; };
 		B9B16485253F6D3C005B5A66 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */; };
 		B9DACEA925A7B09E00AA01E7 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DACEA825A7B09E00AA01E7 /* KeepSwipingButton.swift */; };
+		B9DACEAE25A7BD8500AA01E7 /* MatchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DACEAD25A7BD8500AA01E7 /* MatchViewViewModel.swift */; };
 		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
 		B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */; };
 		B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC42522552E001EA75C /* AppDelegate.swift */; };
@@ -95,6 +96,7 @@
 		B9A516F6254BE0180023CACD /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B9B16484253F6D3B005B5A66 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		B9DACEA825A7B09E00AA01E7 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
+		B9DACEAD25A7BD8500AA01E7 /* MatchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewViewModel.swift; sourceTree = "<group>"; };
 		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		B9F6ACC12522552E001EA75C /* TinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +321,7 @@
 				B96A8CF6252CC83B00A3A6B0 /* AuthenticationViewModel.swift */,
 				B919FACD2548A24800CECC78 /* SettingsViewModel.swift */,
 				B94E01AD258C77B4000C66C4 /* ProfileViewModel.swift */,
+				B9DACEAD25A7BD8500AA01E7 /* MatchViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				B94E01A9258C5131000C66C4 /* ProfileCell.swift in Sources */,
 				B9A516EE254B600F0023CACD /* SettingsFooter.swift in Sources */,
 				B9172A2F2527AAD30037966E /* CustomAuthButton.swift in Sources */,
+				B9DACEAE25A7BD8500AA01E7 /* MatchViewViewModel.swift in Sources */,
 				B919FAC625489EFC00CECC78 /* SettingsCell.swift in Sources */,
 				B910F0A0252EBFDB0055DB57 /* Constantes.swift in Sources */,
 				B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */,

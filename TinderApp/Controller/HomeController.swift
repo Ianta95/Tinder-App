@@ -120,7 +120,9 @@ class HomeController: UIViewController {
     // Mostrar match
     func presentMatchView(forUser user: User){
         guard let currentUser = self.user else { return }
-        let matchView = MatchView(currentUser: currentUser, matchedUser: user)
+        let viewModel = MatchViewViewModel(currentUser: currentUser, matchedUser: user)
+        let matchView = MatchView(viewModel: viewModel)
+        matchView.delegate = self
         view.addSubview(matchView)
         matchView.fillSuperview()
     }
@@ -248,4 +250,12 @@ extension HomeController: AuthenticationDelegate {
         fetchCurrentUserAndCards()
         
     }
+}
+// MatchView delegate
+extension HomeController: MatchViewDelegate {
+    func matchView(_ view: MatchView, wantsToSendMessageTo user: User) {
+        print("Hizo click en mensaje al usuario")
+    }
+    
+    
 }
