@@ -58,6 +58,9 @@ struct Service {
                           "maxSeekingAge": user.maxSeekingAge] as [String: Any]
         COLLECT_USERS.document(user.uid).setData(data, completion: completion)
     }
+    
+    
+    
     // Subir imagen
     static func uploadImage(image: UIImage, completion: @escaping(String) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
@@ -75,17 +78,26 @@ struct Service {
         }
     }
     
-    static func saveSwipe(forUser user: User, isLike: Bool) {
+    static func saveSwipe(forUser user: User, isLike: Bool, completion: ((Error?) -> Void)?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        //let shouldLike = isLike ? 1 : 0
         COLLECT_SWIPES.document(uid).getDocument { (snapshot, error) in
             let data = [user.uid: isLike]
             print("data es \(data), snapshot \(snapshot) y error \(error)")
             if (snapshot?.exists == true) {
-                COLLECT_SWIPES.document(uid).updateData(data)
+                COLLECT_SWIPES.document(uid).updateData(data, completion: completion)
             } else {
-                COLLECT_SWIPES.document(uid).setData(data)
+                COLLECT_SWIPES.document(uid).setData(data, completion: completion)
             }
         }
+    }
+    
+    static func checkIfMatchExists(forUser user: User, completion: @escaping(Bool) -> Void) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        COLLECT_SWIPES.document(user.uid).getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() else { return }
+            guard let didMatch = data[currentUid] as? Bool else { return }
+            completion(didMatch)
+        }
+        
     }
 }
