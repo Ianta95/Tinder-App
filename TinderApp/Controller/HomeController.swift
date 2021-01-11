@@ -77,7 +77,10 @@ class HomeController: UIViewController {
             self.topCardView = self.cardViews.last
             guard didLike == true else { return }
             Service.checkIfMatchExists(forUser: user) { didMatch in
-                self.presentMatchView(forUser: user)            }
+                self.presentMatchView(forUser: user)
+                guard let currentUser = self.user else { return }
+                Service.uploadMatch(currentUser: currentUser, matchedUser: user)
+            }
         }
     }
     // Cierra sesión

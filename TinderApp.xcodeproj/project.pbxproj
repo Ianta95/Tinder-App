@@ -38,6 +38,7 @@
 		B9DACEBE25A8262B00AA01E7 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DACEBD25A8262B00AA01E7 /* MatchCell.swift */; };
 		B9DE14DA2524EC85001AD8D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14D92524EC85001AD8D9 /* User.swift */; };
 		B9DE14DF2524EDA9001AD8D9 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */; };
+		B9F4F58925ACEE7600EAAF03 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F4F58825ACEE7600EAAF03 /* Match.swift */; };
 		B9F6ACC52522552E001EA75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC42522552E001EA75C /* AppDelegate.swift */; };
 		B9F6ACC72522552E001EA75C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F6ACC62522552E001EA75C /* SceneDelegate.swift */; };
 		B9F6ACCC2522552E001EA75C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F6ACCA2522552E001EA75C /* Main.storyboard */; };
@@ -105,6 +106,7 @@
 		B9DACEBD25A8262B00AA01E7 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		B9DE14D92524EC85001AD8D9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B9DE14DE2524EDA9001AD8D9 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		B9F4F58825ACEE7600EAAF03 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		B9F6ACC12522552E001EA75C /* TinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F6ACC42522552E001EA75C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9F6ACC62522552E001EA75C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				B9DE14D92524EC85001AD8D9 /* User.swift */,
+				B9F4F58825ACEE7600EAAF03 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				B910F0A0252EBFDB0055DB57 /* Constantes.swift in Sources */,
 				B9172A3A2527B8380037966E /* CustomAuthTextButton.swift in Sources */,
 				B9F6AD0925225C3B001EA75C /* Extensions.swift in Sources */,
+				B9F4F58925ACEE7600EAAF03 /* Match.swift in Sources */,
 				B9B16485253F6D3C005B5A66 /* SettingsHeader.swift in Sources */,
 				B9F6AD04252256BF001EA75C /* HomeController.swift in Sources */,
 				B96F499F25A586B30009BC73 /* MatchView.swift in Sources */,
