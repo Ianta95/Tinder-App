@@ -26,6 +26,7 @@ class MessagesController: UITableViewController {
     override func viewDidLoad() {
         configureTableView()
         configureNavigationBar()
+        fetchMatches()
     }
     // Required
     required init?(coder: NSCoder) {
@@ -55,6 +56,12 @@ class MessagesController: UITableViewController {
         let icon = UIImageView(image: #imageLiteral(resourceName: "top_messages_icon").withRenderingMode(.alwaysTemplate))
         icon.tintColor = .systemPink
         navigationItem.titleView = icon
+    }
+    /*------> API <------*/
+    func fetchMatches() {
+        Service.fetchMatches { matches in
+            self.headerView.matches = matches
+        }
     }
     
     /*------> Acciones <------*/

@@ -120,6 +120,17 @@ struct Service {
         let currentUserData = ["uid": currentUser.uid, "name": currentUser.name, "profileImageUrl": currentUserProfileImageUrl]
         COLLECT_MATCHES_MSS.document(matchedUser.uid).collection("matches").document(currentUser.uid).setData(currentUserData)
     }
-    
+    // Obtener Matches
+    static func fetchMatches(completion: @escaping([Match]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        var matches = [Match]()
+        COLLECT_MATCHES_MSS.document(uid).collection("matches").getDocuments { (snapshot, error) in
+            guard let data = snapshot else { return }
+            let matches = data.documents.map({ Match(dictionary: $0.data()) })
+            completion(matches)
+            
+            
+        }
+    }
     
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class MatchCell: UICollectionViewCell {
-    /*------> Propiedades <------*/
+    /*------> Componentes <------*/
     // Imagen perfil
     private let profileImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "kelly2"))
@@ -30,6 +30,13 @@ class MatchCell: UICollectionViewCell {
         label.numberOfLines = 2
         return label
     }()
+    /*------> Propiedades <------*/
+    var viewModel: MatchCellViewModel! {
+        didSet {
+            usernameLabel.text = viewModel.nameText
+            profileImageView.sd_setImage(with: viewModel.profileImageUrl)
+        }
+    }
     
     /*------> Ciclo vida <------*/
     
@@ -38,6 +45,7 @@ class MatchCell: UICollectionViewCell {
         // Añadir views
         let stack = UIStackView(arrangedSubviews: [profileImageView, usernameLabel])
         stack.distribution = .fillProportionally
+        stack.axis = .vertical
         stack.alignment = .center
         stack.spacing = 6
         addSubview(stack)
