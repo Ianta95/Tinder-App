@@ -209,7 +209,10 @@ extension HomeController: CardViewDelegate {
 // Bottom Buttons delegate
 extension HomeController: BottomControlsStackViewDelegate {
     func handleRefresh() {
-        print("Click Refresh")
+        guard let user = self.user else { return }
+        Service.fetchUsers(forCurrentUser: user) { users in
+            self.viewModels = users.map({ CardViewModel(user: $0) })
+        }
     }
     
     func handleDislike() {

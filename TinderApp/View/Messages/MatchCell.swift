@@ -27,7 +27,7 @@ class MatchCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .black
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
     }()
     /*------> Propiedades <------*/

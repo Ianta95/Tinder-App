@@ -38,6 +38,8 @@ class MessagesController: UITableViewController {
         tableView.rowHeight = 80
         tableView.tableFooterView = UIView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        headerView.delegate = self
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         tableView.tableHeaderView = headerView
     }
@@ -97,4 +99,14 @@ extension MessagesController {
         return view
         
     }
+}
+
+extension MessagesController: MatchHeaderDelegate {
+    func matchHeader(_ header: MatchHeader, startChatWith uid: String) {
+        Service.fetchUser(withUid: uid) { user in
+            <#code#>
+        }
+    }
+    
+    
 }
