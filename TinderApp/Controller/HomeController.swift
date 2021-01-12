@@ -77,7 +77,10 @@ class HomeController: UIViewController {
             self.topCardView = self.cardViews.last
             guard didLike == true else { return }
             Service.checkIfMatchExists(forUser: user) { didMatch in
-                self.presentMatchView(forUser: user)            }
+                self.presentMatchView(forUser: user)
+                guard let currentUser = self.user else { return }
+                Service.uploadMatch(currentUser: currentUser, matchedUser: user)
+            }
         }
     }
     // Cierra sesión
@@ -166,7 +169,11 @@ extension HomeController: HomeNavigationStackViewDelegate {
     }
     
     func showMessages() {
-        print("Click en Mensajes")
+        guard let user = user else { return }
+        let controller = MessagesController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
 // Actualizar de settings
@@ -202,7 +209,10 @@ extension HomeController: CardViewDelegate {
 // Bottom Buttons delegate
 extension HomeController: BottomControlsStackViewDelegate {
     func handleRefresh() {
-        print("Click Refresh")
+        guard let user = self.user else { return }
+        Service.fetchUsers(forCurrentUser: user) { users in
+            self.viewModels = users.map({ CardViewModel(user: $0) })
+        }
     }
     
     func handleDislike() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 protocol AuthenticationDelegate: class {
     func authenticationComplete()
@@ -48,12 +49,17 @@ class LoginController: UIViewController {
     @objc func handleLogin(){
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Iniciando sesión"
+        hud.show(in: view)
         AuthService.loginUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("DEBUG: Error al intentar hacer login: \(error.localizedDescription)")
+                hud.dismiss()
                 return
             }
             print("DEBUG: Se logro hacer login correctamente")
+            hud.dismiss()
             self.delegate?.authenticationComplete()
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class RegistrationController: UIViewController {
     
@@ -55,11 +56,16 @@ class RegistrationController: UIViewController {
         guard let fullName = fullNameTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let profileImage = self.profileImage else { return }
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Registrando usuario"
+        hud.show(in: view)
         let credentials = AuthCredentials(email: email, password: password, fullname: fullName, profileImage: profileImage)
         AuthService.registerUser(withCredentials: credentials) { error in
             if let error = error {
+                hud.dismiss()
                 return 
             }
+            hud.dismiss()
             self.delegate?.authenticationComplete()
         }
     }
